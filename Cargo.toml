@@ -1,14 +1,7 @@
 # Copyright © SixtyFPS GmbH <info@slint.dev>
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-Slint-Royalty-free-2.0 OR LicenseRef-Slint-Software-3.0
 
-# This workspace only contains the library and tool crates that developers
-# actively work on. The examples, demos, integration tests and the material
-# UI library each live in their own workspace (examples/, demos/, tests/,
-# ui-libraries/material/) so that rust-analyzer / cargo does not have to load
-# the ~70 crates that pull in the `slint!` proc-macro just to work on the
-# libraries. All workspaces share the repository `target/` directory (see
-# `.cargo/config.toml`) and use identical `[profile]` settings, so the common
-# library artifacts are built once and reused across all of them.
+
 [workspace]
 members = [
   'api/cpp',
