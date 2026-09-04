@@ -52,12 +52,15 @@ jobs:
           accepted_before() {
             { gh api "$VARIABLE" --jq .value 2>/dev/null || true; } | tr -s '[:space:]' '\n' | grep -qixF -- "$AUTHOR"
           }
-          ticked() {
-            printf '%s\n' "$BODY" | grep -qE '^[[:space:]]*[-*][[:space:]]*\[[xX]\][[:space:]]*I license my contribution'
+          # The box only counts with the complete sentence after it, unchanged.
+          sentence=$(printf '%s\n' "$AGREEMENT" | sed -n 's/^- \[ \] //p')
+          box_followed_by_sentence() {
+            printf '%s\n' "$BODY" | tr -d '\r' \
+              | sed -n "s/^[[:space:]]*[-*][[:space:]]*\\[$1\\][[:space:]]*//p" | sed 's/[[:space:]]*$//' \
+              | grep -qxF -- "$sentence"
           }
-          present() {
-            printf '%s\n' "$BODY" | grep -qE '\[[ xX]\][[:space:]]*I license my contribution'
-          }
+          ticked() { box_followed_by_sentence '[xX]'; }
+          present() { box_followed_by_sentence '[ xX]'; }
           if accepted_before; then
             echo "Recorded in the CONTRIBUTION_AGREEMENTS variable."
             status=recorded
