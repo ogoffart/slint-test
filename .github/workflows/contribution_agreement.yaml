@@ -24,7 +24,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  check:
+  contribution_agreement:
     # Team members are covered by their contract, bots by their operator's terms.
     if: >-
       github.event.pull_request.user.type != 'Bot' &&
@@ -113,11 +113,16 @@ jobs:
           echo "Recorded $AUTHOR."
 
       - name: Verify the agreement
-        if: steps.lookup.outputs.status != 'recorded' && steps.lookup.outputs.status != 'ticked'
+        env:
+          STATUS: ${{ steps.lookup.outputs.status }}
         run: |
-          if [ "${{ steps.lookup.outputs.status }}" = ticked-by-someone-else ]; then
-            echo "::error::The author of the pull request must tick the contribution agreement checkbox themselves."
-          else
-            echo "::error::Tick the checkbox under 'Contribution agreement' in the pull request description to license your contribution under MIT-0."
-          fi
-          exit 1
+          case "$STATUS" in
+            recorded|ticked)
+              echo "$AUTHOR accepted the contribution terms." ;;
+            ticked-by-someone-else)
+              echo "::error::The author of the pull request must tick the contribution agreement checkbox themselves."
+              exit 1 ;;
+            *)
+              echo "::error::Tick the checkbox under 'Contribution agreement' in the pull request description to license your contribution under MIT-0."
+              exit 1 ;;
+          esac
