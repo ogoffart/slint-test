@@ -11,6 +11,14 @@ https://github.com/slint-ui/slint/labels/good%20first%20issue.
 If you use an AI coding assistant, it reads [AGENTS.md](AGENTS.md) for build commands and
 architecture notes specific to this repository.
 
+## Pull Requests
+
+Keep pull requests small and focused.
+A bug fix or one self-contained change is easy to review; a large code drop isn't, and may wait a long time.
+If you plan a big feature, discuss it first in an issue or on our [public chat](https://chat.slint.dev) before writing the code.
+Slint is 1.x and has a stable API, so discuss any public API change with the Slint team first.
+That way we agree on the design early, and your contribution is much more likely to be accepted.
+
 ## Internal documentation
 
  - [Development guide](docs/development.md)
