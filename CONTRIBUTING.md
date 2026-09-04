@@ -31,6 +31,11 @@ Make sure you wrote the contribution yourself, and that no rights
 have been transferred to a third party, such as your employer.
 If that isn't the case, let us know before opening the pull request.
 
+You confirm this once, for all your contributions.
+When you open your first pull request, a bot adds a checkbox to its description.
+Tick it to accept these terms; you aren't asked again in later pull requests.
+Pull requests from accounts that haven't accepted the terms can't be merged.
+
 ### Our Open-Source Pledge
 
 We believe that open-source software development and communities are the foundation
