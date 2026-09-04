@@ -113,13 +113,6 @@ jobs:
           gh api --method "$method" "$url" -f name=CONTRIBUTION_AGREEMENTS -f value="$(cat updated.txt)" > /dev/null
           echo "Recorded $AUTHOR."
 
-      - name: Thank the contributor
-        if: steps.lookup.outputs.status == 'ticked'
-        run: |
-          gh pr comment "$PR" --repo "$REPO" --body-file - <<'MSG'
-          ✅ Thanks! We recorded your agreement, you won't be asked again.
-          MSG
-
       - name: Verify the agreement
         if: steps.lookup.outputs.status != 'recorded' && steps.lookup.outputs.status != 'ticked'
         run: |
