@@ -27,9 +27,7 @@ jobs:
   # repository variable, one per line.
   contribution_agreement:
     # Team members are covered by their contract, bots by their operator's terms.
-    if: >-
-      github.event.pull_request.user.type != 'Bot' &&
-      !contains(fromJson('["OWNER", "MEMBER"]'), github.event.pull_request.author_association)
+    if: github.event.pull_request.user.type != 'Bot'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
     env:
