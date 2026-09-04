@@ -90,7 +90,7 @@ jobs:
         if: github.event.action == 'opened' && steps.lookup.outputs.status != 'recorded' && steps.lookup.outputs.status != 'ticked'
         run: |
           gh pr comment "$PR" --repo "$REPO" --body-file - <<'MSG'
-          👋 Thanks for your pull request! If you haven't yet, take a look at [CONTRIBUTING.md](https://github.com/slint-ui/slint/blob/master/CONTRIBUTING.md).
+          👋 Welcome, and thanks for your pull request! If you haven't yet, take a look at [CONTRIBUTING.md](https://github.com/slint-ui/slint/blob/master/CONTRIBUTING.md).
 
           Before we can merge it, tick the box at the end of the description. It confirms your contributions are licensed under MIT-0, as explained in [CONTRIBUTING.md#license](https://github.com/slint-ui/slint/blob/master/CONTRIBUTING.md#license); you keep the copyright. You only do this once. If you can't agree, tell us in a comment instead.
 
